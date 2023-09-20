@@ -17,10 +17,10 @@ public class IndexController {
         keyValuePairs = siema.getWords();
     }
 
-    @GetMapping("/keyvalue")
-    public String keyValuePage(Model model) {
+    @GetMapping("/")
+    public String index(Model model) {
         Set<Map.Entry<String, String>> entries = keyValuePairs.entrySet();
         model.addAttribute("keyValuePairs", entries);
-        return "keyvalue";
+        return "index";
     }
 }
