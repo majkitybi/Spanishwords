@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Key-Value Pairs</title>
+</head>
+<body>
+<h1>Key-Value Pairs</h1>
+<p id="key-value"></p>
+<button class="show-button" th:text="'Show Value'" id="show-button"></button>
+<button id="next-button">Next</button>
+
+<script th:inline="javascript">
+        /*<![CDATA[*/
+        const keyValueDisplay = document.getElementById('key-value');
+        const showButton = document.getElementById('show-button');
+        const nextButton = document.getElementById('next-button');
+
+        let keyIndex = 0;
+        const keyValuePairs = [[${keyValuePairs}]];
+
+        function showKeyAndValue(index, showKeyValue) {
+            if (index >= 0 && index < keyValuePairs.length) {
+                const keys = Object.keys(keyValuePairs[index]);
+                const key = keys[0]; // Assuming there is only one key in each entry
+                const value = keyValuePairs[index][key];
+                if (showKeyValue) {
+                    keyValueDisplay.textContent = value;
+                } else {
+                    keyValueDisplay.textContent = `${key}: [Click 'Show Value' to display]`;
+                }
+            }
+        }
+
+        nextButton.addEventListener('click', () => {
+            keyIndex = (keyIndex + 1) % keyValuePairs.length;
+            showKeyAndValue(keyIndex, false);
+        });
+
+        showButton.addEventListener('click', () => {
+            showKeyAndValue(keyIndex, true);
+        });
+
+        showKeyAndValue(keyIndex, false); // Initially, show the first key and [Click 'Show Value' to display]
+        /*]]>*/
+    </script>
+</body>
+</html>
