@@ -16,7 +16,7 @@ public class ExcelProvider {
     private XSSFWorkbook workbook;
 
     public ExcelProvider() throws IOException {
-        file = new FileInputStream("src/main/resources/Arkusz kalkulacyjny bez tytułu.xlsx");
+        file = new FileInputStream("src/main/resources/hiszpanski (1).xlsx");
         workbook  = new XSSFWorkbook(file);
     }
 
